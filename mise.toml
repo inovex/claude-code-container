@@ -1,2 +1,14 @@
 [tasks.build]
 run = "docker build . -t claude-container"
+
+[tasks.bump-claude]
+description = "Update CLAUDE_VERSION, branch, and commit the Dockerfile bump"
+usage = 'arg "<claude_version>" help="Claude version"'
+run = '''
+#!/bin/bash -x
+version="${usage_claude_version?}"
+git switch -c "v$version"
+gsed -i -e "s/^ARG CLAUDE_VERSION=.*/ARG CLAUDE_VERSION=$version/" Dockerfile
+git add Dockerfile
+git commit -m "chore: bump claude to $version"
+'''
