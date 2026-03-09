@@ -19,5 +19,5 @@ docker build . -t claude-container
 Mount your current working directory into the container at `/home/dev/work`:
 
 ```sh
-docker run --rm -it -v "$PWD:/home/dev/work" ghcr.io/invadersmustdie/claude-code-container
+docker run --rm -it -v "$PWD:/home/dev/work" ghcr.io/inovex/claude-code-container
 ```
